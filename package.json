@@ -1,0 +1,16 @@
+{
+  "name": "jkpgcity-portal",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "homepage": "https://github.com/ReinisMuiznieks/JkpgCity-Portal#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReinisMuiznieks/JkpgCity-Portal.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
