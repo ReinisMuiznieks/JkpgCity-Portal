@@ -2,6 +2,8 @@
 
 A full-stack web application for managing venues and stores in Jönköping City, built with Node.js and JS.
 
+### User Interface 
+- Designed in Figma - [View Prototype](https://www.figma.com/design/3Iacw7wyOayjsg44PGC6rk/JkpgCity?node-id=0-1&t=yK0TCXnShJwh7KZL-1)
 ---
 
 ## ToC
