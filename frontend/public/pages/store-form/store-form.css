@@ -1,70 +1,70 @@
 .navbar {
-    background-color: #DC4F4F;
+  background-color: #dc4f4f;
 }
 
 .hero {
-    background-color: #DC4F4F;
-    padding: 2rem 1rem;
+  background-color: #dc4f4f;
+  padding: 2rem 1rem;
 }
 
 .form-container {
-    padding: 4rem;
+  padding: 4rem;
 }
 
 .form-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 1fr;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .form-group > label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .button-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
 }
 
 .btn-primary {
-    background-color: #253b6b;
-    color: #f1f1f1;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: small;
-    font-weight: bold;
-    width: 100%; 
+  background-color: #253b6b;
+  color: #f1f1f1;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: small;
+  font-weight: bold;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
-    .form-container {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-    .form-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem 3rem;
-    }
+  .form-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 3rem;
+  }
 
-    .description-group {
-        grid-row: span 2;
-    }
+  .description-group {
+    grid-row: span 2;
+  }
 
-    #description {
-        height: 100%;
-    }
+  #description {
+    height: 100%;
+  }
 
-    .btn-primary {
-        width: auto;
-    }
+  .btn-primary {
+    width: auto;
+  }
 }

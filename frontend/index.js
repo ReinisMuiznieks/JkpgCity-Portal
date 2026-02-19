@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "public", "pages", "stores", "stores.html"),
+    path.join(__dirname, "public", "pages", "stores", "stores.html")
   );
 });
 
@@ -17,13 +17,13 @@ app.get("/", (req, res) => {
 // now 1 is used as a placeholder to represent store ID
 app.get("/store/edit/1", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "public", "pages", "store-form", "store-form.html"),
+    path.join(__dirname, "public", "pages", "store-form", "store-form.html")
   );
 });
 
 app.get("/store/new", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "public", "pages", "store-form", "store-form.html"),
+    path.join(__dirname, "public", "pages", "store-form", "store-form.html")
   );
 });
 
