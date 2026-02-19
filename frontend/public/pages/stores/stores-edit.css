@@ -1,0 +1,80 @@
+.navbar {
+    background-color: #DC4F4F;
+}
+
+.hero {
+    background-color: #DC4F4F;
+    padding: 2rem 1rem;
+}
+
+.form-container {
+    padding: 4rem;
+}
+
+.form-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-group > label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+input, select, textarea {
+    appearance: none; /*avoid default styling on mac*/
+    padding: 0.5rem;
+    border: 1px solid #121212;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.btn-primary {
+    background-color: #253b6b;
+    color: #f1f1f1;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: small;
+    font-weight: bold;
+    width: 100%; 
+}
+
+@media (min-width: 768px) {
+    .form-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 3rem;
+    }
+
+    .description-group {
+        grid-row: span 2;
+    }
+
+    #description {
+        height: 100%;
+    }
+
+    .btn-primary {
+        width: auto;
+    }
+}

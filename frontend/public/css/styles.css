@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+main {
+    background-color: #f1f1f1;
+}
+
 body {
   font-family: "Inter", sans-serif;
 }
@@ -16,12 +20,12 @@ body {
   background-color: #253b6b;
   color: #f1f1f1;
   text-align: left;
-  margin-bottom: 4rem;
-  padding: 2rem;
+  padding: 4rem 2rem;
 }
 
 .hero h1 {
   font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 900;
   margin-bottom: 2rem;
+  text-transform: uppercase;
 }
