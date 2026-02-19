@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - JkpgCity Portal</title>
+    <link rel="stylesheet" href="/pages/login/login.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="../components/shared/navbar/navbar.css" />
+  </head>
+  <body>
+    <!-- Navbar placeholder -->
+    <header id="navbar"></header>
+
+    <!-- Page content -->
+    <main id="content">
+      <section class="hero container">
+        <h1>Hero title</h1>
+        <p>Hero subtitle</p>
+      </section>
+
+      <section class="login-form">
+        <div class="login-container">
+          <form action="/login" method="POST">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <button type="submit">LogIn</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/shared.js"></script>
+  </body>
+</html>
