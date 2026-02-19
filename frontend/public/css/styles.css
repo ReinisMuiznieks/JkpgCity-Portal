@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  padding-inline: clamp(1.5rem, 5vw, 9rem);
+}
+
+.hero {
+  background-color: #253b6b;
+  color: #f1f1f1;
+  text-align: left;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 900;
+}
