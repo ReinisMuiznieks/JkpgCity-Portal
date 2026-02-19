@@ -28,16 +28,6 @@
     margin-bottom: 0.5rem;
 }
 
-input, select, textarea {
-    appearance: none; /*avoid default styling on mac*/
-    padding: 0.5rem;
-    border: 1px solid #121212;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-
 .button-wrapper {
     display: flex;
     justify-content: flex-end;

@@ -29,3 +29,14 @@ body {
   margin-bottom: 2rem;
   text-transform: uppercase;
 }
+
+input,
+select,
+textarea {
+  appearance: none;
+  padding: 0.5rem;
+  border: 1px solid #121212;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  border-radius: 5px;
+}
