@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - JkpgCity Portal</title>
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="stores.css">
     <link rel="stylesheet" href="../components/shared/navbar/navbar.css" />
   </head>
   <body>
@@ -14,8 +15,89 @@
     <!-- Page content -->
     <main id="content">
       <section class="hero container">
-        <h1>Hero title</h1>
-        <p>Hero subtitle</p>
+        <h1>Discover <br> Jönköping City</h1>
+        <p>Shop, dine, go to museum, see concerts and a lot more. Jkpg City has a lot to offer anyone looking for a good time.</p>
+      </section>
+
+      <section class="controls">
+        <div class="filters-container">
+          <select id="district-filter">
+            <option value="">District</option>
+            <option value="city">Jönköping City</option>
+            <option value="oster">Öster</option>
+            <option value="vaster">Väster</option>
+            <option value="vatterstranden">Vätterstranden</option>
+            <option value="a6">A6 / Ryhov</option>
+            <option value="huskvarna">Huskvarna</option>
+          </select>
+
+          <select id="type-filter">
+            <option value="">Type</option>
+            <option value="store">Store</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="cafe">Cafe</option>
+            <option value="apotek">Apotek</option>
+          </select>
+        </div>
+
+        <div class="sorting-container">
+          <select id="sorting">
+            <option value="az">Sort by: A-Z</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+          </select>
+
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <div class="card-content">
+            <h3>Akademibokhandeln</h3>
+            <p>Read more</p>
+          </div>
+          <span class="arrow">→</span>
+        </article>
+
+        <article class="card">
+          <div class="card-content">
+            <h3>Ambri's Italien</h3>
+            <p>Read more</p>
+          </div>
+          <span class="arrow">→</span>
+        </article>
+
+        <article class="card">
+          <div class="card-content">
+            <h3>Apotek Hjärtat</h3>
+            <p>Read more</p>
+          </div>
+          <span class="arrow">→</span>
+        </article>
+
+        <article class="card">
+          <div class="card-content">
+            <h3>Akademibokhandeln</h3>
+            <p>Read more</p>
+          </div>
+          <span class="arrow">→</span>
+        </article>
+
+        <article class="card">
+          <div class="card-content">
+            <h3>Ambri's Italien</h3>
+            <p>Read more</p>
+          </div>
+          <span class="arrow">→</span>
+        </article>
+
+        <article class="card">
+          <div class="card-content">
+            <h3>Apotek Hjärtat</h3>
+            <p>Read more</p>
+          </div>
+          <span class="arrow">→</span>
+        </article>
       </section>
     </main>
 

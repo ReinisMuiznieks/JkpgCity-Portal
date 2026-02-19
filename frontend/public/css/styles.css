@@ -17,10 +17,11 @@ body {
   color: #f1f1f1;
   text-align: left;
   margin-bottom: 4rem;
-  padding-bottom: 2rem;
+  padding: 2rem;
 }
 
 .hero h1 {
   font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 900;
+  margin-bottom: 2rem;
 }
