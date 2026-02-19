@@ -7,9 +7,14 @@ const port = 8080;
 // Serve static files from 'public' folder
 app.use(express.static(path.join(__dirname, "public")));
 
-// Home page route
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(
+    path.join(__dirname, "public", "pages", "stores", "stores.html"),
+  );
+});
+
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "pages", "login", "login.html"));
 });
 
 app.listen(port, () => {
