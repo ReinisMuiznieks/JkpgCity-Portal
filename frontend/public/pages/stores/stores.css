@@ -1,3 +1,7 @@
+.navbar {
+    background-color: #253b6b;
+}
+
 .controls {
     display: flex;
     flex-direction: column;
