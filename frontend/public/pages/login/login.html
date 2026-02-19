@@ -15,20 +15,19 @@
     <!-- Page content -->
     <main id="content">
       <section class="hero container">
-        <h1>Hero title</h1>
-        <p>Hero subtitle</p>
+        <h1>Login</h1>
       </section>
 
-      <section class="login-form">
-        <div class="login-container">
-          <form action="/login" method="POST">
+      <section class="auth-form">
+        <div class="auth-container">
+          <form action="/auth" method="POST">
             <label for="email">Email</label>
             <input type="text" id="email" name="email" required />
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required />
-
-            <button type="submit">LogIn</button>
+            <p>Don't have an account? <a href="/register">Register here</a></p>
+            <button type="submit">Login</button>
           </form>
         </div>
       </section>
