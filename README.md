@@ -47,10 +47,27 @@ JkpgCity-Portal/
 │   └── README.md              # Documentation
 │
 ├── frontend/                   # Frontend client
+│   ├── node_modules/          # Installed packages
 │   ├── public/                # Files served to browser
+│   │   ├── components/
+│   │   │   └── shared/        # Shared components
+│   │   │       ├── footer/
+│   │   │       │   ├── footer.html
+│   │   │       │   └── footer.css
+│   │   │       └── navbar/
+│   │   │           ├── navbar.html
+│   │   │           └── navbar.css
 │   │   ├── css/
-│   │   │   └── styles.css     # CSS styles
-│   │   └── index.html         # Main HTML
+│   │   │   └── styles.css     # Global styles
+│   │   ├── js/
+│   │   │   └── shared.js      # Shared component loader
+│   │   └── pages/
+│   │       ├── login/
+│   │       │   ├── login.html
+│   │       │   └── login.css
+│   │       └── stores/
+│   │           ├── stores.html
+│   │           └── stores.css
 │   ├── index.js               # Frontend server
 │   ├── package.json           # Dependencies, scripts
 │   ├── package-lock.json      # Packages
