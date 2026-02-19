@@ -31,6 +31,12 @@ app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "pages", "login", "login.html"));
 });
 
+app.get("/register", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "public", "pages", "register", "register.html")
+  );
+});
+
 app.listen(port, () => {
   console.log(`Frontend server running at http://localhost:${port}`);
 });

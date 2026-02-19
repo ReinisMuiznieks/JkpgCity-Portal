@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - JkpgCity Portal</title>
+    <link rel="stylesheet" href="/pages/login/login.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="../components/shared/navbar/navbar.css" />
+  </head>
+  <body>
+    <!-- Navbar placeholder -->
+    <header id="navbar"></header>
+
+    <!-- Page content -->
+    <main id="content">
+      <section class="hero container">
+        <h1>Register</h1>
+      </section>
+
+      <section class="auth-form">
+        <div class="auth-container">
+          <form action="/auth" method="POST">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <label for="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              required
+            />
+            <p>Already have an account? <a href="/login">Login here</a></p>
+            <button type="submit">Register</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/shared.js"></script>
+  </body>
+</html>
