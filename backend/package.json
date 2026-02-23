@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "db:start": "./start-database.sh"
   },
   "dependencies": {
     "express": "^5.2.1",

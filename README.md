@@ -121,6 +121,7 @@ Run **both** the backend and frontend servers
 
 ```bash
 cd backend
+npm run db:start
 npm start
 ```
 

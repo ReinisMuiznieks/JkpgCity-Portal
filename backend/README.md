@@ -17,6 +17,7 @@ npm install
 ### Development Mode
 
 ```bash
+npm run db:start
 npm start
 ```
 
