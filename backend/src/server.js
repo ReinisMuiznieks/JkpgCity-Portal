@@ -1,42 +1,14 @@
-const { Client } = require("pg");
 const express = require("express");
+const { connectDB, database } = require("./db.js");
+const { createUserTable } = require("./models/User.js");
+const userRoutes = require("./routes/users.js");
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const database = new Client({
-  host: "localhost",
-  port: 5432,
-  user: "postgres",
-  password: "12345",
-  database: "postgres",
-});
-
-app.get("/all", async (req, res) => {
-  try {
-    const dbres = await database.query("SELECT * FROM users;");
-    console.log("All users:", dbres.rows);
-    res.json(dbres.rows);
-  } catch (err) {
-    console.error("Error selecting records", err.stack);
-  }
-});
-
-function createUserTable() {
-  const createTableQuery = `
-CREATE TABLE IF NOT EXISTS users (
-id SERIAL PRIMARY KEY,
-username VARCHAR(50),
-email VARCHAR(100) UNIQUE,
-password VARCHAR(255)
-); 
-`;
-  database
-    .query(createTableQuery)
-    .then(() => console.log('Table "users" created or already exists'))
-    .catch((err) => console.error("Error creating table", err.stack));
-}
+app.use("/users", userRoutes);
 
 function createStoreTable() {
   const createTableQuery = `
@@ -206,8 +178,8 @@ app.post("/login", async (req, res) => {
 
 const startServer = async () => {
   try {
-    await database.connect();
-    console.log("Connected to PostgreSQL database ");
+    await connectDB();
+    await createUserTable();
   } catch (err) {
     console.error("Connection error", err.stack);
   }
