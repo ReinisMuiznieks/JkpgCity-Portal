@@ -66,6 +66,25 @@ app.get("/stores", async (req, res) => {
   }
 });
 
+//route to get store by id
+app.get("/stores/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const resultStoreID = await database.query(
+      "SELECT * FROM stores WHERE id=$1",
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "store not found" });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Error selecting stores", err.stack);
+    res.status(500).json({ error: "internal server error" });
+  }
+});
+
 // Only needed for initial user like admin
 function insertRecord(insertValues) {
   const insertQuery = `
