@@ -120,6 +120,32 @@ app.post("/stores", async (req, res) => {
   }
 });
 
+// edit store
+app.put("/stores/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, url, district } = req.body;
+
+  if (!name || !url || !district) {
+    return res
+      .status(400)
+      .json({ error: "name, url, and district of store are required" });
+  }
+
+  try {
+    const result = await database.query(
+      `UPDATE stores
+    SET name = $1, url = $2, district = $3 
+    WHERE id =$4 
+    RETURNING *`,
+      [name, url, district, id]
+    );
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Update error:", err);
+    res.status(500).json({ error: "server error" });
+  }
+});
+
 app.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
