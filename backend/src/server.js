@@ -1,6 +1,5 @@
 const express = require("express");
-const fs = require('fs');
-const path = require('path');
+const cors = require("cors");
 const { connectDB, database } = require("./db.js");
 const { createUserTable } = require("./models/User.js");
 const { createStore, createStoreTable } = require("./models/Store.js");
@@ -9,6 +8,7 @@ const storeRoutes = require("./routes/stores.js");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
