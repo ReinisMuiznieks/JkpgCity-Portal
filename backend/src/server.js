@@ -60,6 +60,7 @@ app.get("/stores", async (req, res) => {
   try {
     const storesResult = await database.query("SELECT * FROM stores;");
     console.log("All stores:", storesResult.rows);
+    res.json(storesResult.rows);
   } catch (err) {
     console.error("Error selecting stores", err.stack);
     res.status(500).json({ error: "internal server error" });
@@ -98,6 +99,26 @@ RETURNING *;
     .then((res) => console.log("Inserted record:", res.rows[0]))
     .catch((err) => console.error("Error inserting record", err.stack));
 }
+
+// add new store
+app.post("/stores", async (req, res) => {
+  const { name, url, district } = req.body;
+  if (!name || !url || !district) {
+    return res
+      .status(400)
+      .json({ error: "name, url, and district of store are required" });
+  }
+  try {
+    const result = await database.query(
+      "INSERT INTO stores (name, url, district) VALUES ($1,$2,$3) RETURNING *",
+      [name, url, district]
+    );
+    return res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "internal server error" });
+  }
+});
 
 app.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
