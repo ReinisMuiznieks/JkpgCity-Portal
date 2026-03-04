@@ -38,6 +38,23 @@ password VARCHAR(255)
     .catch((err) => console.error("Error creating table", err.stack));
 }
 
+function createStoreTable() {
+  const createTableQuery = `
+  CREATE TABLE IF NOT EXISTS stores (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50),
+  url VARCHAR(300),
+  district VARCHAR(50),
+  );
+  `;
+  database
+    .query(createTableQuery)
+    .then(() =>
+      console.log('table "stores" created succesfully or already exists')
+    )
+    .catch((err) => console.error("Error creating table", err.stack));
+}
+
 function insertRecord(insertValues) {
   const insertQuery = `
 INSERT INTO users (username, email, password)
