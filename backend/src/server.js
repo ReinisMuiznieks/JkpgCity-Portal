@@ -2,7 +2,8 @@ const { Database } = require("pg");
 const express = require("express");
 const app = express();
 
-const database = new Database({
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
   host: "localhost",
   port: 5432,
   user: "postgres",
