@@ -23,7 +23,7 @@ app.get("/all", async (req, res) => {
   }
 });
 
-function createTable() {
+function createUserTable() {
   const createTableQuery = `
 CREATE TABLE IF NOT EXISTS users (
 id SERIAL PRIMARY KEY,
@@ -66,6 +66,7 @@ app.get("/stores", async (req, res) => {
   }
 });
 
+// Only needed for initial user like admin
 function insertRecord(insertValues) {
   const insertQuery = `
 INSERT INTO users (username, email, password)
@@ -103,6 +104,36 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Finds user by their email
+    const result = await database.query(
+      "SELECT id, username, email, password FROM users WHERE email = $1",
+      [email]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(401).json({ error: "User is not registered" });
+    }
+
+    const user = result.rows[0];
+
+    if (password !== user.password) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    // Login User
+    return res.json({
+      message: "Login Successful",
+      user: { id: user.id, name: username.username, email: user.email },
+    });
+  } catch (err) {
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+
 // Change if exists
 // const insertValues = ["admin", "admin@gmail.com", "admin"];
 
@@ -122,4 +153,5 @@ startServer();
 
 createTable(); //users
 createStoreTable(); //stores
+createUserTable();
 // insertRecord(insertValues);
