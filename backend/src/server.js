@@ -1,7 +1,11 @@
 const express = require("express");
+const fs = require('fs');
+const path = require('path');
 const { connectDB, database } = require("./db.js");
 const { createUserTable } = require("./models/User.js");
+const { createStore, createStoreTable } = require("./models/Store.js");
 const userRoutes = require("./routes/users.js");
+const storeRoutes = require("./routes/stores.js");
 
 const app = express();
 
@@ -9,122 +13,45 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", userRoutes);
-
-function createStoreTable() {
-  const createTableQuery = `
-  CREATE TABLE IF NOT EXISTS stores (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(50),
-  url VARCHAR(300),
-  district VARCHAR(50)
-  );
-  `;
-  database
-    .query(createTableQuery)
-    .then(() =>
-      console.log('table "stores" created succesfully or already exists')
-    )
-    .catch((err) => console.error("Error creating table", err.stack));
-}
-
-// route to get all stores
-app.get("/stores", async (req, res) => {
-  try {
-    const storesResult = await database.query("SELECT * FROM stores;");
-    console.log("All stores:", storesResult.rows);
-    res.json(storesResult.rows);
-  } catch (err) {
-    console.error("Error selecting stores", err.stack);
-    res.status(500).json({ error: "internal server error" });
-  }
-});
-
-//route to get store by id
-app.get("/stores/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const result = await database.query("SELECT * FROM stores WHERE id=$1", [
-      id,
-    ]);
-
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: "store not found" });
-    }
-
-    // 0 refering to the first and only row for that response
-    res.json(result.rows[0]);
-  } catch (err) {
-    console.error("Error selecting stores", err.stack);
-    res.status(500).json({ error: "internal server error" });
-  }
-});
-
-// Only needed for initial user like admin
-function insertRecord(insertValues) {
-  const insertQuery = `
-INSERT INTO users (username, email, password)
-VALUES ($1, $2, $3)
-RETURNING *;
-`;
-  database
-    .query(insertQuery, insertValues)
-    .then((res) => console.log("Inserted record:", res.rows[0]))
-    .catch((err) => console.error("Error inserting record", err.stack));
-}
-
-// add new store
-app.post("/stores", async (req, res) => {
-  const { name, url, district } = req.body;
-  if (!name || !url || !district) {
-    return res
-      .status(400)
-      .json({ error: "name, url, and district of store are required" });
-  }
-  try {
-    const result = await database.query(
-      "INSERT INTO stores (name, url, district) VALUES ($1,$2,$3) RETURNING *",
-      [name, url, district]
-    );
-    return res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: "internal server error" });
-  }
-});
-
-// edit store
-app.put("/stores/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name, url, district } = req.body;
-
-  if (!name || !url || !district) {
-    return res
-      .status(400)
-      .json({ error: "name, url, and district of store are required" });
-  }
-
-  try {
-    const result = await database.query(
-      `UPDATE stores
-    SET name = $1, url = $2, district = $3 
-    WHERE id =$4 
-    RETURNING *`,
-      [name, url, district, id]
-    );
-    res.json(result.rows[0]);
-  } catch (err) {
-    console.error("Update error:", err);
-    res.status(500).json({ error: "server error" });
-  }
-});
+app.use("/stores", storeRoutes);
 
 // Change if exists
 // const insertValues = ["admin", "admin@gmail.com", "admin"];
+
+
+// backend/src/server.js
+
+async function loadStoresFromJson() {
+  try {
+    //check if there is any stores already to avoid duplicates
+    const existingStores = await database.query("SELECT COUNT(*) FROM stores");
+    if (parseInt(existingStores.rows[0].count) > 0) {
+      console.log("Stores already exist in database, skipping import.");
+      return;
+    }
+
+    const filePath = path.join(__dirname, './stores.json');
+    
+    //read and parse the file
+    const rawData = fs.readFileSync(filePath, "utf8");
+    const stores = JSON.parse(rawData);
+
+    //loop through the array and insert each store
+    for (const store of stores) {
+      await createStore(store.name, store.url, store.district);
+    }
+    console.log("Successfully loaded stores from src/stores.json!");
+  } catch (err) {
+    console.error("Error loading stores from file:", err);
+  }
+}
 
 const startServer = async () => {
   try {
     await connectDB();
     await createUserTable();
+    await createStoreTable();
+    await loadStoresFromJson();
   } catch (err) {
     console.error("Connection error", err.stack);
   }
@@ -134,7 +61,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-createStoreTable();
-createUserTable();
-// insertRecord(insertValues);

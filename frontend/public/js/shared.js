@@ -37,3 +37,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Fetch and inject the navbar HTML, wait for it to finish before continuing
   await loadNavbar();
 });
+
