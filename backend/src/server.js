@@ -57,7 +57,7 @@ app.post("/register", async (req, res) => {
   try {
     const result = await database.query(
       "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
-      [username, email]
+      [username, email, password]
     );
 
     return res.status(201).json(result.rows[0]);
@@ -66,7 +66,7 @@ app.post("/register", async (req, res) => {
 
     // postgres error: duplicate key value
     if (err.code === "23505") {
-      return res.status(409).json({ error: "user already exits" });
+      return res.status(409).json({ error: "user already exists" });
     }
     return res.status(500).json({ error: "internal server error" });
   }
