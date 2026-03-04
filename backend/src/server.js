@@ -151,7 +151,6 @@ const startServer = async () => {
 
 startServer();
 
-createTable(); //users
-createStoreTable(); //stores
+createStoreTable();
 createUserTable();
 // insertRecord(insertValues);
