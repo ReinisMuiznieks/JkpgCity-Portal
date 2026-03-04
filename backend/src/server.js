@@ -118,61 +118,6 @@ app.put("/stores/:id", async (req, res) => {
   }
 });
 
-app.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
-    return res
-      .status(400)
-      .json({ error: "name, email, and password are required" });
-  }
-  try {
-    const result = await database.query(
-      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
-      [username, email, password]
-    );
-
-    return res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-
-    // postgres error: duplicate key value
-    if (err.code === "23505") {
-      return res.status(409).json({ error: "user already exists" });
-    }
-    return res.status(500).json({ error: "internal server error" });
-  }
-});
-
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    // Finds user by their email
-    const result = await database.query(
-      "SELECT id, username, email, password FROM users WHERE email = $1",
-      [email]
-    );
-
-    if (result.rows.length === 0) {
-      return res.status(401).json({ error: "User is not registered" });
-    }
-
-    const user = result.rows[0];
-
-    if (password !== user.password) {
-      return res.status(401).json({ error: "Invalid credentials" });
-    }
-
-    // Login User
-    return res.json({
-      message: "Login Successful",
-      user: { id: user.id, name: username.username, email: user.email },
-    });
-  } catch (err) {
-    return res.status(500).json({ error: "Server error" });
-  }
-});
-
 // Change if exists
 // const insertValues = ["admin", "admin@gmail.com", "admin"];
 
