@@ -1,9 +1,11 @@
-const { Database } = require("pg");
+const { Client } = require("pg");
 const express = require("express");
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const database = new Client({
   host: "localhost",
   port: 5432,
   user: "postgres",
