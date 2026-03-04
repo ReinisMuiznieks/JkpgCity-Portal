@@ -44,7 +44,7 @@ function createStoreTable() {
   id SERIAL PRIMARY KEY,
   name VARCHAR(50),
   url VARCHAR(300),
-  district VARCHAR(50),
+  district VARCHAR(50)
   );
   `;
   database
@@ -54,6 +54,17 @@ function createStoreTable() {
     )
     .catch((err) => console.error("Error creating table", err.stack));
 }
+
+// route to get all stores
+app.get("/stores", async (req, res) => {
+  try {
+    const storesResult = await database.query("SELECT * FROM stores;");
+    console.log("All stores:", storesResult.rows);
+  } catch (err) {
+    console.error("Error selecting stores", err.stack);
+    res.status(500).json({ error: "internal server error" });
+  }
+});
 
 function insertRecord(insertValues) {
   const insertQuery = `
@@ -109,5 +120,6 @@ const startServer = async () => {
 
 startServer();
 
-createTable();
+createTable(); //users
+createStoreTable(); //stores
 // insertRecord(insertValues);
