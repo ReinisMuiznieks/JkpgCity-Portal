@@ -3,7 +3,7 @@
 const express = require("express");
 // rouer is used to define the routes for the stores endpoint
 const router = express.Router();
-const { getAllStores, getStoreById, createStore } = require("../models/Store");
+const { getAllStores, getStoreById, createStore, updateStore } = require("../models/Store");
 
 router.get("/", async (req, res) => {
   try {
@@ -38,6 +38,25 @@ router.post("/", async (req, res) => {
     res.status(201).json(store);
   } catch (err) {
     res.status(500).json({ error: "internal server error" });
+  }
+});
+
+router.put("/stores/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, url, district } = req.body;
+
+  if (!name || !url || !district) {
+    return res
+      .status(400)
+      .json({ error: "name, url, and district of store are required" });
+  }
+
+  try {
+    const store = await updateStore(id, name, url, district);
+    res.json(store);
+  } catch (err) {
+    console.error("Update error:", err);
+    res.status(500).json({ error: "server error" });
   }
 });
 

@@ -34,9 +34,18 @@ async function createStore(name, url, district) {
   return result.rows[0];
 }
 
+async function updateStore(id, name, url, district) {
+  const result = await database.query(
+    `UPDATE stores SET name = $1, url = $2, district = $3 WHERE id = $4 RETURNING *`,
+    [name, url, district, id]
+  );
+  return result.rows[0];
+}
+
 module.exports = {
   createStoreTable,
   getAllStores,
   getStoreById,
   createStore,
+  updateStore,
 };
