@@ -58,6 +58,22 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     console.error("Error deleting store:", err);
     res.status(500).json({ error: "Internal server error" });
+router.put("/stores/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, url, district } = req.body;
+
+  if (!name || !url || !district) {
+    return res
+      .status(400)
+      .json({ error: "name, url, and district of store are required" });
+  }
+
+  try {
+    const store = await updateStore(id, name, url, district);
+    res.json(store);
+  } catch (err) {
+    console.error("Update error:", err);
+    res.status(500).json({ error: "server error" });
   }
 });
 
