@@ -3,7 +3,12 @@
 const express = require("express");
 // rouer is used to define the routes for the stores endpoint
 const router = express.Router();
-const { getAllStores, getStoreById, createStore } = require("../models/Store");
+const {
+  getAllStores,
+  getStoreById,
+  createStore,
+  deleteStoreById,
+} = require("../models/Store");
 
 router.get("/", async (req, res) => {
   try {
@@ -38,6 +43,21 @@ router.post("/", async (req, res) => {
     res.status(201).json(store);
   } catch (err) {
     res.status(500).json({ error: "internal server error" });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await deleteStoreById(id);
+    if (result) {
+      return res.status(404).json({ error: "store not found" });
+    }
+    res.json({ message: "store deleted successfully", store: result });
+  } catch (err) {
+    console.error("Error deleting store:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

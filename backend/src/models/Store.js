@@ -34,9 +34,18 @@ async function createStore(name, url, district) {
   return result.rows[0];
 }
 
+async function deleteStoreById(id) {
+  const result = await database.query(
+    "DELETE FROM stores WHERE id = $1 RETURNING * ",
+    [id]
+  );
+  return result.rows[0]; //undefined = if nothing was deleted
+}
+
 module.exports = {
   createStoreTable,
   getAllStores,
   getStoreById,
   createStore,
+  deleteStoreById,
 };
