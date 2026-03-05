@@ -21,17 +21,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/stores/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const result = await getStoreById(id);
+    const store = await getStoreById(id);
 
-    if (result.rows.length === 0) {
+    if (!store) {
       return res.status(404).json({ error: "store not found" });
     }
 
-    // 0 refering to the first and only row for that response
-    res.json(result.rows[0]);
+    res.json(store);
   } catch (err) {
     console.error("Error selecting stores", err.stack);
     res.status(500).json({ error: "internal server error" });
@@ -52,11 +51,11 @@ router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const result = await deleteStoreById(id);
-    if (result) {
+    const deletedStore = await deleteStoreById(id);
+    if (!deletedStore) {
       return res.status(404).json({ error: "store not found" });
     }
-    res.json({ message: "store deleted successfully", store: result });
+    res.json({ message: "store deleted successfully", store: deletedStore });
   } catch (err) {
     console.error("Error deleting store:", err);
     res.status(500).json({ error: "Internal server error" });
