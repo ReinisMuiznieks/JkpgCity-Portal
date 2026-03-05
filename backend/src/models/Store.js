@@ -34,6 +34,14 @@ async function createStore(name, url, district) {
   return result.rows[0];
 }
 
+async function updateStore(id, name, url, district) {
+  const result = await database.query(
+    `UPDATE stores SET name = $1, url = $2, district = $3 WHERE id = $4 RETURNING *`,
+    [name, url, district, id]
+  );
+  return result.rows[0];
+}
+
 async function deleteStoreById(id) {
   const result = await database.query(
     "DELETE FROM stores WHERE id = $1 RETURNING * ",
@@ -48,4 +56,5 @@ module.exports = {
   getStoreById,
   createStore,
   deleteStoreById,
+  updateStore,
 };

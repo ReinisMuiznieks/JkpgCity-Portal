@@ -3,17 +3,13 @@
 const express = require("express");
 // rouer is used to define the routes for the stores endpoint
 const router = express.Router();
-const {
-  getAllStores,
-  getStoreById,
-  createStore,
-  deleteStoreById,
-} = require("../models/Store");
+
 const {
   getAllStores,
   getStoreById,
   createStore,
   updateStore,
+  deleteStoreById,
 } = require("../models/Store");
 
 router.get("/", async (req, res) => {
