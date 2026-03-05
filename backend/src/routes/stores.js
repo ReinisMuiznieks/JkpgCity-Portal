@@ -9,6 +9,12 @@ const {
   createStore,
   deleteStoreById,
 } = require("../models/Store");
+const {
+  getAllStores,
+  getStoreById,
+  createStore,
+  updateStore,
+} = require("../models/Store");
 
 router.get("/", async (req, res) => {
   try {
@@ -58,6 +64,9 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     console.error("Error deleting store:", err);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 router.put("/stores/:id", async (req, res) => {
   const { id } = req.params;
   const { name, url, district } = req.body;
