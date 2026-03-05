@@ -1,3 +1,4 @@
+// Purpose of the file - define the User model and its associated database operations
 const { database } = require("../db");
 
 async function createUserTable() {

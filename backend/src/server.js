@@ -1,4 +1,5 @@
 const express = require("express");
+// cors is used to allow cross-origin requests from the frontend
 const cors = require("cors");
 const { connectDB, database } = require("./db.js");
 const { createUserTable } = require("./models/User.js");
@@ -18,7 +19,6 @@ app.use("/stores", storeRoutes);
 // Change if exists
 // const insertValues = ["admin", "admin@gmail.com", "admin"];
 
-
 // backend/src/server.js
 
 async function loadStoresFromJson() {
@@ -30,8 +30,8 @@ async function loadStoresFromJson() {
       return;
     }
 
-    const filePath = path.join(__dirname, './stores.json');
-    
+    const filePath = path.join(__dirname, "./stores.json");
+
     //read and parse the file
     const rawData = fs.readFileSync(filePath, "utf8");
     const stores = JSON.parse(rawData);
