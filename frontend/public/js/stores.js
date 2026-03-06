@@ -1,4 +1,4 @@
-const ul = document.getElementById("stores");
+const grid = document.querySelector(".grid");
 
 async function loadStores() {
   try {
@@ -9,24 +9,28 @@ async function loadStores() {
     displayStores(stores);
   } catch (error) {
     console.error("Error:", error);
-    ul.innerHTML = "<li>could not load stores</li>";
+    grid.innerHTML = "<p>Could not load stores</p>";
   }
 }
 
 function displayStores(stores) {
-  ul.innerHTML = "";
+  grid.innerHTML = "";
   if (stores.length === 0) {
-    ul.innerHTML = "no stores found";
+    grid.innerHTML = "<p>no stores found</p>";
     return;
   }
 
   stores.forEach((store) => {
-    const li = document.createElement("li");
-    li.id = `store-${store.id}`;
-    li.innerHTML = `
-    <strong>${store.name}</strong> <br>
-    <a href="${store.url}" target="_blank">${store.url}</a><br> District: ${store.district} <br> <p>${store.description}</p>`;
-    ul.appendChild(li);
+    const article = document.createElement("article");
+    article.className = "card";
+    article.id = `store-${store.id}`;
+    article.innerHTML = `
+      <div class="card-content">
+        <h3>${store.name}</h3>
+        <p>Read more</p>
+      </div>
+      <span class="arrow">→</span>`;
+    grid.appendChild(article);
   });
 }
 
