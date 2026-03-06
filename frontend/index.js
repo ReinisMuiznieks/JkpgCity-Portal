@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 
 // Change to /store/edit/:id to handle dynamic store editing after implementing backend,
 // now 1 is used as a placeholder to represent store ID
-app.get("/store/edit/1", (req, res) => {
+app.get("/store/edit/:id", (req, res) => {
   res.sendFile(
     path.join(__dirname, "public", "pages", "store-form", "store-form.html")
   );

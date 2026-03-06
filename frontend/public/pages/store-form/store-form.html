@@ -33,6 +33,35 @@
       sizes="512x512"
       href="/favicons/android-chrome-512x512.png"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicons/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/favicons/android-chrome-512x512.png"
+    />
     <link rel="manifest" href="/favicons/site.webmanifest" />
     <title>Add/Edit Venues</title>
     <link rel="stylesheet" href="/css/styles.css" />
@@ -58,14 +87,9 @@
               <input type="text" id="venue-name" name="name" />
             </div>
 
-            <!-- <div class="form-group">
-              <label for="opening-hours">Opening Hours</label>
-              <input type="text" id="opening-hours" name="hours" />
-            </div> -->
-
             <div class="form-group">
               <label for="url">url</label>
-              <input type="text" id="url" name="type" />
+              <input type="text" id="url" name="url" />
             </div>
 
             <div class="form-group description-group">
@@ -80,15 +104,7 @@
 
             <div class="form-group">
               <label for="district">District</label>
-              <select name="district" id="district">
-                <option value="" disabled selected>Select district</option>
-                <option value="city">Jönköping City</option>
-                <option value="oster">Öster</option>
-                <option value="vaster">Väster</option>
-                <option value="vatterstranden">Vätterstranden</option>
-                <option value="a6">A6 / Ryhov</option>
-                <option value="huskvarna">Huskvarna</option>
-              </select>
+              <input type="text" id="district" name="district" />
             </div>
           </div>
           <div class="button-wrapper">
@@ -99,6 +115,7 @@
     </main>
 
     <script src="/js/shared.js"></script>
+    <script src="/js/store-edit.js"></script>
     <script src="/js/store-add.js"></script>
   </body>
 </html>
