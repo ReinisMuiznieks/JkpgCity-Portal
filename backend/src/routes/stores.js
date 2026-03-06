@@ -62,7 +62,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/stores/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { name, url, district, description } = req.body;
 
