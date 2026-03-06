@@ -1,6 +1,8 @@
 const express = require("express");
 // cors is used to allow cross-origin requests from the frontend
 const cors = require("cors");
+const fs = require("fs");
+const path = require("path");
 const { connectDB, database } = require("./db.js");
 const { createUserTable } = require("./models/User.js");
 const { createStore, createStoreTable } = require("./models/Store.js");
