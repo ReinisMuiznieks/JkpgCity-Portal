@@ -16,7 +16,7 @@ button.addEventListener("click", async (e) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, url, district }),
+      body: JSON.stringify({ name, url, district, description }),
     });
 
     const data = await response.json();

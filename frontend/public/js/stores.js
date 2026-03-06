@@ -25,7 +25,7 @@ function displayStores(stores) {
     li.id = `store-${store.id}`;
     li.innerHTML = `
     <strong>${store.name}</strong> <br>
-    <a href="${store.url}" target="_blank">${store.url}</a><br> District: ${store.district}`;
+    <a href="${store.url}" target="_blank">${store.url}</a><br> District: ${store.district} <br> <p>${store.description}</p>`;
     ul.appendChild(li);
   });
 }

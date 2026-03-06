@@ -7,7 +7,8 @@ async function createStoreTable() {
       id SERIAL PRIMARY KEY,
       name VARCHAR(50),
       url VARCHAR(300),
-      district VARCHAR(50)
+      district VARCHAR(50),
+      description VARCHAR(255)
     );
   `;
   await database.query(createTableQuery);
@@ -26,18 +27,18 @@ async function getStoreById(id) {
   return result.rows[0];
 }
 
-async function createStore(name, url, district) {
+async function createStore(name, url, district, description) {
   const result = await database.query(
-    "INSERT INTO stores (name, url, district) VALUES ($1, $2, $3) RETURNING *",
-    [name, url, district]
+    "INSERT INTO stores (name, url, district, description) VALUES ($1, $2, $3, $4) RETURNING *",
+    [name, url, district, description]
   );
   return result.rows[0];
 }
 
-async function updateStore(id, name, url, district) {
+async function updateStore(id, name, url, district, description) {
   const result = await database.query(
-    `UPDATE stores SET name = $1, url = $2, district = $3 WHERE id = $4 RETURNING *`,
-    [name, url, district, id]
+    `UPDATE stores SET name = $1, url = $2, district = $3, description = $4 WHERE id = $5 RETURNING *`,
+    [name, url, district, description, id]
   );
   return result.rows[0];
 }
