@@ -30,6 +30,12 @@ function displayStores(stores) {
         <p>Read more</p>
       </div>
       <span class="arrow">→</span>`;
+    article.addEventListener("click", () => {
+      const url = store.url.startsWith("http")
+        ? store.url
+        : `https://${store.url}`;
+      window.open(url, "_blank");
+    });
     grid.appendChild(article);
   });
 }
