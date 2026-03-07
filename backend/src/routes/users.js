@@ -33,14 +33,14 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
+  const { email, password } = req.body;
+  if (!email || !password) {
     return res
       .status(400)
-      .json({ error: "username, email, and password required" });
+      .json({ error: "email and password required" });
   }
   try {
-    const user = await createUser(username, email, password);
+    const user = await createUser(email, password);
     res.status(201).json(user);
   } catch (err) {
     console.error(err);
@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
     }
     res.json({
       message: "Login Successful",
-      user: { id: user.id, username: user.username, email: user.email },
+      user: { id: user.id, email: user.email },
     });
   } catch (err) {
     res.status(500).json({ error: "Server error" });
