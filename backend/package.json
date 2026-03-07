@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "db:start": "./start-database.sh"
+    "db:start": "bash start-database.sh"
   },
   "dependencies": {
     "cors": "^2.8.6",

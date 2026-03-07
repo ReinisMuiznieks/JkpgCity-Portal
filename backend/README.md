@@ -4,6 +4,7 @@
 
 - Node.js (v18 or higher)
 - npm (comes with Node.js)
+- Docker up and runnning
 
 ### Install Dependencies
 
