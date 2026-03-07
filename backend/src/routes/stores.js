@@ -38,9 +38,9 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, url, district, description } = req.body;
+  const { name, url, district, description, type } = req.body;
   try {
-    const store = await createStore(name, url, district, description);
+    const store = await createStore(name, url, district, description, type);
     res.status(201).json(store);
   } catch (err) {
     res.status(500).json({ error: "internal server error" });
@@ -64,16 +64,16 @@ router.delete("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { name, url, district, description } = req.body;
+  const { name, url, district, description, type } = req.body;
 
-  if (!name || !url || !district || !description) {
+  if (!name || !url || !district || !description || !type) {
     return res.status(400).json({
-      error: "name, url, district, and description of store are required",
+      error: "name, url, district, description and type of store are required",
     });
   }
 
   try {
-    const store = await updateStore(id, name, url, district, description);
+    const store = await updateStore(id, name, url, district, description, type);
     res.json(store);
   } catch (err) {
     console.error("Update error:", err);

@@ -21,6 +21,7 @@ async function loadStore() {
     document.getElementById("url").value = store.url || "";
     document.getElementById("district").value = store.district || "";
     document.getElementById("description").value = store.description || "";
+    document.getElementById("type").value = store.type || "";
   } catch (error) {
     console.error("Error:", error);
   }
@@ -45,6 +46,7 @@ document
     const url = document.getElementById("url").value;
     const district = document.getElementById("district").value;
     const description = document.getElementById("description").value;
+    const type = document.getElementById("type").value;
 
     try {
       const response = await fetch(
@@ -54,7 +56,7 @@ document
         {
           method: isEdit ? "PUT" : "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, url, district, description }),
+          body: JSON.stringify({ name, url, district, description, type }),
         }
       );
       const data = await response.json();

@@ -8,7 +8,8 @@ async function createStoreTable() {
       name VARCHAR(50),
       url VARCHAR(300),
       district VARCHAR(50),
-      description VARCHAR(255)
+      description VARCHAR(255),
+      type VARCHAR(100)
     );
   `;
   await database.query(createTableQuery);
@@ -27,18 +28,18 @@ async function getStoreById(id) {
   return result.rows[0];
 }
 
-async function createStore(name, url, district, description) {
+async function createStore(name, url, district, description, type) {
   const result = await database.query(
-    "INSERT INTO stores (name, url, district, description) VALUES ($1, $2, $3, $4) RETURNING *",
-    [name, url, district, description]
+    "INSERT INTO stores (name, url, district, description, type) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    [name, url, district, description, type]
   );
   return result.rows[0];
 }
 
-async function updateStore(id, name, url, district, description) {
+async function updateStore(id, name, url, district, description, type) {
   const result = await database.query(
-    `UPDATE stores SET name = $1, url = $2, district = $3, description = $4 WHERE id = $5 RETURNING *`,
-    [name, url, district, description, id]
+    `UPDATE stores SET name = $1, url = $2, district = $3, description = $4, type = $5 WHERE id = $6 RETURNING *`,
+    [name, url, district, description, type, id]
   );
   return result.rows[0];
 }
