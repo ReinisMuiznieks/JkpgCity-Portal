@@ -10,7 +10,7 @@ const id = isEdit ? window.location.pathname.split("/").pop() : null;
 
 async function loadStore() {
   try {
-    const response = await fetch(`http://localhost:3001/stores/${id}`);
+    const response = await fetch(`http://localhost:3000/stores/${id}`);
     if (!response.ok) throw new Error("Failed to fetch store");
     const store = await response.json();
     if (store.length === 0) {
@@ -51,8 +51,8 @@ document
     try {
       const response = await fetch(
         isEdit
-          ? `http://localhost:3001/stores/${id}`
-          : "http://localhost:3001/stores",
+          ? `http://localhost:3000/stores/${id}`
+          : "http://localhost:3000/stores",
         {
           method: isEdit ? "PUT" : "POST",
           headers: { "Content-Type": "application/json" },

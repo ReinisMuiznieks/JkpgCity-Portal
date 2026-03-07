@@ -8,7 +8,7 @@ if (loginForm) {
 
     try {
       // send data to backend
-      const response = await fetch("http://localhost:3001/users/login", {
+      const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -33,6 +33,14 @@ For first set up, install these programs on your computer:
 - Use default settings during installation
 - Verify installation: `git --version`
 
+### **Install Docker Desktop** (for running with Docker)
+
+- Install from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+- Verify installation: `docker --version`
+
+> **What is Docker Compose?**
+> Docker Compose is a tool that lets us run multiple services (backend, database, frontend) together with a single command. e.g. Instead of manually installing and configuring PostgreSQL on your pc, Docker Compose starts up containers for each service — all preconfigured and networked together. The `docker-compose.yml` file in the project root defines these services.
+
 ---
 
 ## Project Structure
@@ -113,9 +121,22 @@ npm install
 
 ## Running the Application
 
-Run **both** the backend and frontend servers
+### With Docker (recommended)
 
-### Using Two Terminal Windows
+Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+```bash
+npm run docker
+```
+
+- Frontend: http://localhost:8080
+- Backend API: http://localhost:3000
+
+> If the backend fails to connect on first start (postgres not
+
+### Running locally
+
+Run **both** the backend and frontend servers
 
 **Terminal 1 - Start Backend:**
 

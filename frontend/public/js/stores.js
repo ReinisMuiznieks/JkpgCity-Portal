@@ -6,7 +6,7 @@ let allStores = [];
 
 async function loadStores() {
   try {
-    const response = await fetch("http://localhost:3001/stores");
+    const response = await fetch("http://localhost:3000/stores");
     if (!response.ok) throw new Error("Failed to fetch stores");
 
     allStores = await response.json();
@@ -24,12 +24,12 @@ function applyFiltersAndSort() {
   //filter by district
   const selectedDistrict = districtFilter.value;
   if (selectedDistrict) {
-    filtered = filtered.filter(store => store.district === selectedDistrict);
+    filtered = filtered.filter((store) => store.district === selectedDistrict);
   }
 
   //sort logic
   const sortBy = sortingSelect.value;
-  filtered.sort((a,b) => {
+  filtered.sort((a, b) => {
     if (sortBy === "az") {
       return a.name.localeCompare(b.name);
     }
@@ -42,7 +42,6 @@ function applyFiltersAndSort() {
 
   displayStores(filtered);
 }
-
 
 function displayStores(stores) {
   grid.innerHTML = "";

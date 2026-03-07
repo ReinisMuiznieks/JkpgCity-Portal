@@ -12,18 +12,24 @@ cd frontend
 npm install
 ```
 
-## Running the Server
+## Development
 
-### Development Mode
+### With Docker (recommended)
+
+Run `npm run docker` from the project root — Docker Compose starts the backend automatically.
+
+### Locally
+
+Requires the backend to be running on http://localhost:3000
 
 ```bash
 npm start
 ```
 
-Server runs on: `http://localhost:8080`
+or
 
 ```bash
 npm run dev
 ```
 
-Note: You need the backend running on http://localhost:3000 to fetch data
+Server runs on: `http://localhost:8080`

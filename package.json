@@ -11,6 +11,8 @@
   "license": "ISC",
   "author": "",
   "scripts": {
+    "docker": "docker compose up --build",
+    "docker:backend": "docker compose up --build postgres backend",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

@@ -4,7 +4,7 @@
 
 - Node.js (v18 or higher)
 - npm (comes with Node.js)
-- Docker up and runnning
+- Docker (for local DB or full Docker setup)
 
 ### Install Dependencies
 
@@ -13,13 +13,17 @@ cd backend
 npm install
 ```
 
-## Running the Server
+## Development
 
-### Development Mode
+### With Docker (recommended)
 
-```bash
-npm run db:start
-npm start
-```
+Run `npm run docker` from the project root — no manual DB setup needed.
+
+### Locally
+
+1. Start the database: `npm run db:start`
+2. Start the server: `npm start`
+
+> `npm run db:start` is for local development only. Docker Compose handles postgres automatically.
 
 Server runs on: `http://localhost:3000`

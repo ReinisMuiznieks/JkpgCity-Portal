@@ -16,7 +16,7 @@ if (registerForm) {
 
     try {
       // send data to backend (No username included)
-      const response = await fetch("http://localhost:3001/users/register", {
+      const response = await fetch("http://localhost:3000/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +34,9 @@ if (registerForm) {
       }
     } catch (err) {
       console.error("Connection Error:", err);
-      alert("Could not connect to the backend server. Make sure it is running!");
+      alert(
+        "Could not connect to the backend server. Make sure it is running!"
+      );
     }
   });
 }
