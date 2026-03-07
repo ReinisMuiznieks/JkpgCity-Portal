@@ -27,7 +27,7 @@ async function getUserById(id) {
 
 async function createUser(email, password) {
   const result = await database.query(
-    "INSERT INTO users (email, password) VALUES ($1, $2, $3) RETURNING *",
+    "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *",
     [email, password]
   );
   return result.rows[0];
