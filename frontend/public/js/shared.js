@@ -20,9 +20,31 @@ async function requireAuth() {
   return true;
 }
 
+async function updateAuthNav() {
+  const authNav = document.getElementById("auth-nav");
+  if (!authNav) return;
+
+  try {
+    const res = await fetch("http://localhost:3000/users/me", { credentials: "include" });
+    if (!res.ok) return;
+  } catch (_) {
+    return;
+  }
+
+  authNav.innerHTML = `<a id="logout-btn" href="#">Logout</a>`;
+  document.getElementById("logout-btn").addEventListener("click", async (e) => {
+    e.preventDefault();
+    await fetch("http://localhost:3000/users/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    window.location.href = "/login";
+  });
+}
+
 // Wait for the DOM to be fully parsed before running any scripts
 document.addEventListener("DOMContentLoaded", async () => {
-  
   // Fetch and inject the navbar HTML, wait for it to finish before continuing
   await loadNavbar();
+  await updateAuthNav();
 });
