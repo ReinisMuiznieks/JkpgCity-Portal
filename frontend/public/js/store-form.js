@@ -10,7 +10,13 @@ const id = isEdit ? window.location.pathname.split("/").pop() : null;
 
 async function loadStore() {
   try {
-    const response = await fetch(`http://localhost:3000/stores/${id}`);
+    const response = await fetch(`http://localhost:3000/stores/${id}`, {
+      credentials: "include",
+    });
+    // credentials: "include" is necessary to include cookies in the request,
+    // which are needed for authentication.
+    // Without it, the backend would not recognize the user as logged in and
+    // might return an error or no data.
     if (!response.ok) throw new Error("Failed to fetch store");
     const store = await response.json();
     if (store.length === 0) {
@@ -56,6 +62,7 @@ document
         {
           method: isEdit ? "PUT" : "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify({ name, url, district, description, type }),
         }
       );
