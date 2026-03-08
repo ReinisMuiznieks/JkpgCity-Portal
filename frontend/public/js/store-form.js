@@ -34,6 +34,8 @@ async function loadStore() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  if (!await requireAuth()) return;
+
   document.querySelector(".hero h1").textContent = isEdit
     ? "Edit Venue"
     : "Add Venue";

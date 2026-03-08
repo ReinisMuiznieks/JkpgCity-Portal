@@ -11,6 +11,15 @@ async function loadNavbar() {
   document.getElementById("navbar").innerHTML = await response.text();
 }
 
+async function requireAuth() {
+  const res = await fetch("http://localhost:3000/users/me", { credentials: "include" });
+  if (!res.ok) {
+    window.location.href = "/login";
+    return false;
+  }
+  return true;
+}
+
 // Wait for the DOM to be fully parsed before running any scripts
 document.addEventListener("DOMContentLoaded", async () => {
   

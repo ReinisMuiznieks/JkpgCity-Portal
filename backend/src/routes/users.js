@@ -20,6 +20,17 @@ router.get("/all", async (req, res) => {
   }
 });
 
+// This route returns the currently authenticated user's information based on the session token in the signed cookies.
+// It checks if the token is valid and if so, responds with the user's id and email.
+// If not authenticated, it returns a 401 Unauthorized error.
+// It is used by the frontend to check if the user is logged in and to get their info for display purposes.
+router.get("/me", (req, res) => {
+  const token = req.signedCookies.authToken;
+  const session = token && sessions[token];
+  if (!session) return res.status(401).json({ error: "Unauthorized" });
+  res.json({ id: session.userId, email: session.email });
+});
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -37,9 +48,7 @@ router.get("/:id", async (req, res) => {
 router.post("/register", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res
-      .status(400)
-      .json({ error: "email and password required" });
+    return res.status(400).json({ error: "email and password required" });
   }
   try {
     const user = await createUser(email, password);
