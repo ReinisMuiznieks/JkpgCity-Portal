@@ -11,6 +11,7 @@ const {
   updateStore,
   deleteStoreById,
 } = require("../models/Store");
+const auth = require("../middleware/auth");
 
 router.get("/", async (req, res) => {
   try {
@@ -37,7 +38,12 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+// auth middleware is used to protect the route,
+// ensuring that only authenticated users can create a new store
+// flow - client sends a POST request to /stores with the store data in the request body ->
+// auth middleware checks if the user is authenticated ->
+// if authenticated, the createStore function is called (next()) ->
+router.post("/", auth, async (req, res) => {
   const { name, url, district, description, type } = req.body;
   try {
     const store = await createStore(name, url, district, description, type);
@@ -47,7 +53,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -62,7 +68,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   const { id } = req.params;
   const { name, url, district, description, type } = req.body;
 
