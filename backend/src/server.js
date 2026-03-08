@@ -1,6 +1,7 @@
 const express = require("express");
 // cors is used to allow cross-origin requests from the frontend
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const fs = require("fs");
 const path = require("path");
 const { connectDB, database } = require("./db.js");
@@ -11,7 +12,10 @@ const storeRoutes = require("./routes/stores.js");
 
 const app = express();
 
-app.use(cors());
+const SECRET = "jkpgcity-secret-cookie-token";
+
+app.use(cors({ origin: "http://localhost:8080", credentials: true }));
+app.use(cookieParser(SECRET));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

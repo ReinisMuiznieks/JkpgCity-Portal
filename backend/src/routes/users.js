@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const crypto = require("crypto");
+const sessions = require("../sessions.js");
 const {
   getAllUsers,
   getUserById,
@@ -60,6 +62,9 @@ router.post("/login", async (req, res) => {
     if (!user || user.password !== password) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
+    const token = crypto.randomBytes(64).toString("hex");
+    sessions[token] = { userId: user.id, email: user.email };
+    res.cookie("authToken", token, { signed: true, httpOnly: true });
     res.json({
       message: "Login Successful",
       user: { id: user.id, email: user.email },
