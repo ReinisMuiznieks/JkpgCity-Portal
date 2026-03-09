@@ -34,7 +34,7 @@
   margin-top: 1rem;
 }
 
-.btn-primary {
+.btn-add-form {
   background-color: #253b6b;
   color: #f1f1f1;
   padding: 1rem 2rem;
@@ -64,7 +64,7 @@
     height: 100%;
   }
 
-  .btn-primary {
+  .btn-add-form {
     width: auto;
   }
 }
