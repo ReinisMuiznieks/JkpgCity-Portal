@@ -2,11 +2,22 @@ const grid = document.querySelector(".grid");
 const districtFilter = document.getElementById("district-filter");
 const sortingSelect = document.getElementById("sorting");
 
-const isLogged = true;
-
 let allStores = [];
 
+// default state
+let isLoggedIn = false;
+
+async function checkAuth() {
+  const res = await fetch("http://localhost:3000/users/me", {
+    credentials: "include",
+  });
+  return res.ok;
+}
+
 async function loadStores() {
+  // set actual state
+  isLoggedIn = await checkAuth();
+
   try {
     const response = await fetch("http://localhost:3000/stores");
     if (!response.ok) throw new Error("Failed to fetch stores");
@@ -65,9 +76,9 @@ function displayStores(stores) {
     article.innerHTML = `
       <div class="card-content">
         <h3>${store.name}</h3>
-        <a target="_blank" href=${url}>Read more</a>
+        <a target="_blank" href="${url}">Read more</a>
       </div>
-      <a href='/store/edit/:id' style="display: ${isLogged ? "block" : "none"}">edit</a>`;
+      <a href="/store/edit/${store.id}" style="display: ${isLoggedIn ? "block" : "none"}">edit</a>`;
     grid.appendChild(article);
   });
 }
