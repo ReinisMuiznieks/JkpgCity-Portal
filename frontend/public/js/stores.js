@@ -90,9 +90,31 @@ function displayStores(stores) {
         <h3>${store.name}</h3>
         <a target="_blank" href="${url}">Read more</a>
       </div>
-      <a href="/store/edit/${store.id}" style="display: ${isLoggedIn ? "block" : "none"}">edit</a>`;
+      <div>
+      <a href="/store/edit/${store.id}" style="display: ${isLoggedIn ? "block" : "none"}">Edit</a> 
+      <button id="deleteButton">Delete</button>
+      </div>`;
+
+    const deleteBtn = article.querySelector("#deleteButton");
+    deleteBtn.addEventListener("click", async (e) => {
+      await deleteStore(store.id);
+
+      loadStores();
+    });
+
     grid.appendChild(article);
   });
+}
+async function deleteStore(id) {
+  try {
+    const response = await fetch(`http://localhost:3000/stores/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    if (!response.ok) throw new Error("Failed to delete store");
+  } catch (err) {
+    console.log("Error: ", err);
+  }
 }
 
 districtFilter.addEventListener("change", applyFiltersAndSort);
