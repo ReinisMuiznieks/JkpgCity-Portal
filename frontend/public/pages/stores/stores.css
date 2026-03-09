@@ -13,7 +13,10 @@
   display: flex;
   gap: 1rem;
 }
-
+.add-container {
+  display: flex;
+  gap: 1rem;
+}
 select {
   appearance: none;
   -webkit-appearance: none;

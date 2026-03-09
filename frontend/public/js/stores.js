@@ -17,6 +17,7 @@ async function checkAuth() {
 async function loadStores() {
   // set actual state
   isLoggedIn = await checkAuth();
+  addStore();
 
   try {
     const response = await fetch("http://localhost:3000/stores");
@@ -54,6 +55,17 @@ function applyFiltersAndSort() {
   });
 
   displayStores(filtered);
+}
+
+function addStore() {
+  addStoreButton = document.getElementById("add-store-button");
+  if (isLoggedIn) {
+    addStoreButton.style.display = "block";
+    addStoreButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "/store/new";
+    });
+  }
 }
 
 function displayStores(stores) {
