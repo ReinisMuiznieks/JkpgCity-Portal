@@ -2,6 +2,8 @@ const grid = document.querySelector(".grid");
 const districtFilter = document.getElementById("district-filter");
 const sortingSelect = document.getElementById("sorting");
 
+const isLogged = true;
+
 let allStores = [];
 
 async function loadStores() {
@@ -52,20 +54,20 @@ function displayStores(stores) {
 
   stores.forEach((store) => {
     const article = document.createElement("article");
+    const url = store.url
+      ? store.url.startsWith("http")
+        ? store.url
+        : `https://${store.url}`
+      : "#";
+
     article.className = "card";
     article.id = `store-${store.id}`;
     article.innerHTML = `
       <div class="card-content">
         <h3>${store.name}</h3>
-        <p>Read more</p>
+        <a target="_blank" href=${url}>Read more</a>
       </div>
-      <span class="arrow">→</span>`;
-    article.addEventListener("click", () => {
-      const url = store.url.startsWith("http")
-        ? store.url
-        : `https://${store.url}`;
-      window.open(url, "_blank");
-    });
+      <a href='/store/edit/:id' style="display: ${isLogged ? "block" : "none"}">edit</a>`;
     grid.appendChild(article);
   });
 }
