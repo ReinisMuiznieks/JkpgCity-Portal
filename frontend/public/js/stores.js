@@ -92,7 +92,7 @@ function displayStores(stores) {
       </div>
       <div>
       <a href="/store/edit/${store.id}" style="display: ${isLoggedIn ? "block" : "none"}">Edit</a> 
-      <button id="deleteButton">Delete</button>
+      <button id="deleteButton" style="display: ${isLoggedIn ? "block" : "none"}">Delete</button>
       </div>`;
 
     const deleteBtn = article.querySelector("#deleteButton");
