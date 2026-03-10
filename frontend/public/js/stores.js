@@ -58,7 +58,7 @@ function applyFiltersAndSort() {
 }
 
 function addStore() {
-  addStoreButton = document.getElementById("add-store-button");
+  const addStoreButton = document.getElementById("add-store-button");
   if (isLoggedIn) {
     addStoreButton.style.display = "block";
     addStoreButton.addEventListener("click", (e) => {
