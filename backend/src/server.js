@@ -22,11 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/users", userRoutes);
 app.use("/stores", storeRoutes);
 
-// Change if exists
-// const insertValues = ["admin", "admin@gmail.com", "admin"];
-
-// backend/src/server.js
-
 async function loadStoresFromJson() {
   try {
     //check if there is any stores already to avoid duplicates
@@ -62,7 +57,7 @@ const startServer = async () => {
     console.error("Connection error", err.stack);
   }
   app.listen(3000, () => {
-    console.log("Example app listening on port 3000!");
+    console.log("JkpgCity Portal backend listening on port 3000!");
   });
 };
 

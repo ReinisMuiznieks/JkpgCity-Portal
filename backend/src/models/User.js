@@ -13,18 +13,6 @@ async function createUserTable() {
   console.log('Table "users" created or already exists');
 }
 
-async function getAllUsers() {
-  const result = await database.query("SELECT * FROM users");
-  return result.rows;
-}
-
-async function getUserById(id) {
-  const result = await database.query("SELECT * FROM users WHERE id = $1", [
-    id,
-  ]);
-  return result.rows[0];
-}
-
 async function createUser(email, password) {
   const result = await database.query(
     "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *",
@@ -43,8 +31,6 @@ async function findUserByEmail(email) {
 
 module.exports = {
   createUserTable,
-  getAllUsers,
-  getUserById,
   createUser,
   findUserByEmail,
 };

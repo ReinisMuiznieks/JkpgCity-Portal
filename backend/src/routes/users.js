@@ -3,22 +3,9 @@ const router = express.Router();
 const crypto = require("crypto");
 const sessions = require("../sessions.js");
 const {
-  getAllUsers,
-  getUserById,
   createUser,
   findUserByEmail,
 } = require("../models/User.js");
-
-router.get("/all", async (req, res) => {
-  try {
-    const users = await getAllUsers();
-    console.log("All users:", users);
-    res.json(users);
-  } catch (err) {
-    console.error("Error selecting records", err.stack);
-    res.status(500).json({ error: "internal server error" });
-  }
-});
 
 // This route returns the currently authenticated user's information based on the session token in the signed cookies.
 // It checks if the token is valid and if so, responds with the user's id and email.
@@ -29,20 +16,6 @@ router.get("/me", (req, res) => {
   const session = token && sessions[token];
   if (!session) return res.status(401).json({ error: "Unauthorized" });
   res.json({ id: session.userId, email: session.email });
-});
-
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const user = await getUserById(id);
-    if (!user) {
-      return res.status(404).json({ error: "user not found" });
-    }
-    res.json(user);
-  } catch (err) {
-    console.error("Error selecting user", err.stack);
-    res.status(500).json({ error: "internal server error" });
-  }
 });
 
 router.post("/register", async (req, res) => {
