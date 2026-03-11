@@ -54,6 +54,11 @@ document
     const description = document.getElementById("description").value;
     const type = document.getElementById("type").value;
 
+    if (!name || !url || !district || !description || !type) {
+      alert("Please fill in all fields");
+      return;
+    }
+
     try {
       const response = await fetch(
         isEdit
