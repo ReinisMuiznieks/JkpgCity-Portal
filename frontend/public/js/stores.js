@@ -45,6 +45,8 @@ function applyFiltersAndSort() {
   const sortBy = sortingSelect.value;
   filtered.sort((a, b) => {
     if (sortBy === "az") {
+      // locale comapre function compares two strings and returns a number
+      // indicating their relative order
       return a.name.localeCompare(b.name);
     }
     if (sortBy === "district") {

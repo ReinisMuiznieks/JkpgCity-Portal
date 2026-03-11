@@ -45,6 +45,8 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
     const token = crypto.randomBytes(64).toString("hex");
+    // Store session in memory (for demo purposes, not suitable for production)
+    // with user id and email for easy access in the auth middleware
     sessions[token] = { userId: user.id, email: user.email };
     res.cookie("authToken", token, { signed: true, httpOnly: true });
     res.json({
