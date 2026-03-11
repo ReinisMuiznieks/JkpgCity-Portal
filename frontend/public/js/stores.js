@@ -71,6 +71,7 @@ function addStore() {
 }
 
 function displayStores(stores) {
+  // Clear existing content to avoid duplicates
   grid.innerHTML = "";
   if (stores.length === 0) {
     grid.innerHTML = "<p>no stores found</p>";
@@ -79,6 +80,7 @@ function displayStores(stores) {
 
   stores.forEach((store) => {
     const article = document.createElement("article");
+    // if the url doesnt start with http, add https to it. if no url, use #
     const url = store.url
       ? store.url.startsWith("http")
         ? store.url
