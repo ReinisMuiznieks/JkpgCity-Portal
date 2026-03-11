@@ -8,8 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js",
-    "db:start": "bash start-database.sh"
+    "start": "node src/server.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
