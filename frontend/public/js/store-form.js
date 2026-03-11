@@ -33,18 +33,16 @@ async function loadStore() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  if (!await requireAuth()) return;
-
-  document.querySelector(".hero h1").textContent = isEdit
-    ? "Edit Venue"
-    : "Add Venue";
-  document.getElementById("btn-submit-store").textContent = isEdit
-    ? "Save Changes"
-    : "Add Venue";
-
-  if (isEdit) await loadStore();
-});
+async function requireAuth() {
+  const res = await fetch("http://localhost:3000/users/me", {
+    credentials: "include",
+  });
+  if (!res.ok) {
+    window.location.href = "/login";
+    return false;
+  }
+  return true;
+}
 
 document
   .getElementById("btn-submit-store")
@@ -86,3 +84,16 @@ document
       );
     }
   });
+
+document.addEventListener("DOMContentLoaded", async () => {
+  if (!(await requireAuth())) return;
+
+  document.querySelector(".hero h1").textContent = isEdit
+    ? "Edit Venue"
+    : "Add Venue";
+  document.getElementById("btn-submit-store").textContent = isEdit
+    ? "Save Changes"
+    : "Add Venue";
+
+  if (isEdit) await loadStore();
+});

@@ -11,21 +11,14 @@ async function loadNavbar() {
   document.getElementById("navbar").innerHTML = await response.text();
 }
 
-async function requireAuth() {
-  const res = await fetch("http://localhost:3000/users/me", { credentials: "include" });
-  if (!res.ok) {
-    window.location.href = "/login";
-    return false;
-  }
-  return true;
-}
-
 async function updateAuthNav() {
   const authNav = document.getElementById("auth-nav");
   if (!authNav) return;
 
   try {
-    const res = await fetch("http://localhost:3000/users/me", { credentials: "include" });
+    const res = await fetch("http://localhost:3000/users/me", {
+      credentials: "include",
+    });
     if (!res.ok) return;
   } catch (_) {
     return;
