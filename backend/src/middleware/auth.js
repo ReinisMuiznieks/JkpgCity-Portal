@@ -7,6 +7,5 @@ module.exports = (req, res, next) => {
   const token = req.signedCookies.authToken;
   const session = token && sessions[token];
   if (!session) return res.status(401).json({ error: "Unauthorized" });
-  req.user = session;
   next();
 };
