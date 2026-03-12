@@ -6,7 +6,7 @@ async function createStoreTable() {
     CREATE TABLE IF NOT EXISTS stores (
       id SERIAL PRIMARY KEY,
       name VARCHAR(50),
-      url VARCHAR(300),
+      url VARCHAR(225),
       district VARCHAR(50),
       description VARCHAR(255),
       type VARCHAR(100)
@@ -31,7 +31,7 @@ async function getStoreById(id) {
 async function createStore(name, url, district, description, type) {
   const result = await database.query(
     "INSERT INTO stores (name, url, district, description, type) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-    [name, url, district, description, type]
+    [name, url, district, description, type],
   );
   return result.rows[0];
 }
@@ -39,7 +39,7 @@ async function createStore(name, url, district, description, type) {
 async function updateStore(id, name, url, district, description, type) {
   const result = await database.query(
     `UPDATE stores SET name = $1, url = $2, district = $3, description = $4, type = $5 WHERE id = $6 RETURNING *`,
-    [name, url, district, description, type, id]
+    [name, url, district, description, type, id],
   );
   return result.rows[0];
 }
@@ -47,7 +47,7 @@ async function updateStore(id, name, url, district, description, type) {
 async function deleteStoreById(id) {
   const result = await database.query(
     "DELETE FROM stores WHERE id = $1 RETURNING * ",
-    [id]
+    [id],
   );
   return result.rows[0]; //undefined = if nothing was deleted
 }

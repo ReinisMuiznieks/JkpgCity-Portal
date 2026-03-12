@@ -1,8 +1,9 @@
-// Purpose of the file - establish a connection to the postgres database
-// and export the connection for use in other parts of the application
+// define and export database connection and connection function
 const { Client } = require("pg");
 
 const database = new Client({
+  // uses environment variable for host if using docker for backend,
+  // otherwise defaults to localhost
   host: process.env.DB_HOST || "localhost",
   port: 5432,
   user: "postgres",

@@ -16,7 +16,9 @@ const SECRET = "jkpgcity-secret-cookie-token";
 
 app.use(cors({ origin: "http://localhost:8080", credentials: true }));
 app.use(cookieParser(SECRET));
+// parses incoming JSON requests and makes the data available in req.body
 app.use(express.json());
+// parses incoming URL-encoded requests (form submissions) and makes the data available in req.body
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", userRoutes);
